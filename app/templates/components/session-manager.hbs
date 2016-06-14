@@ -1,0 +1,7 @@
+{{#if session.currentlyLoggedIn}}
+
+      <button {{action "logoutUser"}}>Log Out</button>
+      <div class="container">
+  {{partial 'navbar'}}
+  </div>
+    {{/if}}

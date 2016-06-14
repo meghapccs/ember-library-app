@@ -1,0 +1,14 @@
+<h2>List</h2>
+
+{{#each model as |book|}}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{{book.name}}</h3>
+        </div>
+        <div class="panel-body">
+            <p>Price: {{book.price}}
+            <button class="btn btn-danger btn-xs" {{action 'deleteBook' book}}>Delete</button>
+            <button class="btn btn-success btn-xs" {{action 'editBook' book.id}}>Edit</button></p>
+        </div>
+    </div>
+{{/each}}

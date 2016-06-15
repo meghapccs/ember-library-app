@@ -5,7 +5,8 @@ import attr from 'ember-data/attr';
 
 var User = Model.extend({
     username: attr('string'),
-    password: attr('string')
+    password: attr('string'),
+    token: attr('string')
 });
 
 export default User;

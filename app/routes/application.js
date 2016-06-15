@@ -19,7 +19,8 @@ actions: {
         this.clearUser();
         this.get('session').logout();
         this.transitionTo('login');
-        Ember.$.removeCookie('currentUser');
+        // Ember.$.removeCookie('currentUser');
+        Ember.$.removeCookie('authKey');
      } 
    },
 
@@ -27,7 +28,7 @@ actions: {
 
 //to clear user after logout
 clearUser: function(){
-  this.store.find('user', 1).then(function(g){
+  this.store.find('user', this.get('session').authKey).then(function(g){
      g.destroyRecord();
      g.save();
    }); 
@@ -36,12 +37,14 @@ clearUser: function(){
 // we use this to load the user from jquery cookie incase a user refreshes the browser
 //otherwise the user will be logged out
 loadUser: function(){
-  if(Ember.$.cookie('currentUser') && !this.get('session').currentUser ){
-    var fetchUserFromCookie = Ember.$.cookie('currentUser');
+  if(Ember.$.cookie('authKey') && !this.get('session').authKey ){
+    // var fetchUserFromCookie = Ember.$.cookie('currentUser');
+    var fetchAuthKeyFromCookie = Ember.$.cookie('authKey');
 
-    this.get('session').set('currentUser',  fetchUserFromCookie);
+    // this.get('session').set('currentUser',  fetchUserFromCookie);
+    this.get('session').set('authKey',  fetchAuthKeyFromCookie);
 
-this.store.find('user', fetchUserFromCookie);
+this.store.find('user', fetchAuthKeyFromCookie);
      // this.store.push('user', {id: 1, username: fetchUserFromCookie});
   }
 }

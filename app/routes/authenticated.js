@@ -12,7 +12,7 @@ beforeModel: function(transition) {
 //check if cookie contains currentUser or any authKey saved in it
 // If non we save where the path the user was navigating to and redirect to login form
 
-if (!Ember.$.cookie('currentUser')){ 
+if (!Ember.$.cookie('authKey')){ 
 
   this.get('session').set('savedTransition', transition);
 

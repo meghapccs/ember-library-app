@@ -28,7 +28,7 @@ actions: {
 
 //to clear user after logout
 clearUser: function(){
-  this.store.find('user', this.get('session').authKey).then(function(g){
+  this.store.find('user',1).then(function(g){
      g.destroyRecord();
      g.save();
    }); 

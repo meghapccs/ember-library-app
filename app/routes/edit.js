@@ -2,10 +2,13 @@
 import Authenticated from '../routes/authenticated';
 
 export default Authenticated.extend({
-	model: function(params){
-		console.log(this.store.findRecord('library', params.library_id));
-		return this.store.findRecord('library', params.library_id);
+	model: function(library){
+		console.log(this.store.findRecord('library', library.library_id));
+		return this.store.findRecord('library', library.library_id);
 	},
+	 serialize: function(library) {
+    return { library_id: library.get('id') };
+  },
 	actions: {
 		updateBook(newLibrary){
 			newLibrary.save().then(this.transitionTo('libraries'));
